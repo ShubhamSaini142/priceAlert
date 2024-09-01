@@ -35,9 +35,9 @@ public class alertProcessor {
 
     private boolean checkAlert(Alert alert, double currentValue) {
         if ("UP".equals(alert.getDirection())) {
-            return currentValue > alert.getValue();
+            return currentValue > alert.getAlertValue();
         } else {
-            return currentValue < alert.getValue();
+            return currentValue < alert.getAlertValue();
         }
     }
 }

@@ -4,16 +4,19 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-
+@Component
 public class WebSocketPriceListener extends WebSocketClient {
 
     public WebSocketPriceListener(String wsUrl) throws URISyntaxException {
         super(new URI(wsUrl));
     }
-
+    @Autowired
+    alertProcessor a = new alertProcessor();
     @Override
     public void onOpen(ServerHandshake handshakedata) {
         System.out.println("Connected to Binance WebSocket");
@@ -21,18 +24,17 @@ public class WebSocketPriceListener extends WebSocketClient {
 
     @Override
     public void onMessage(String message) {
-        System.out.println("Received message: " + message);
 
-        // Parse the message to extract price or other relevant data
         JsonObject jsonObject = JsonParser.parseString(message).getAsJsonObject();
         double price = jsonObject.get("p").getAsDouble();
+        System.out.println("Received message: " + price);
 
         // Here you would calculate indicators like RSI and MACD
         double currentRSI = calculateRSI(price);
         double currentMACD = calculateMACD(price);
-
         // Process alerts based on the current RSI and MACD
-        AlertProcessor.checkAndTriggerAlerts(currentRSI, currentMACD);
+
+        a.checkAndTriggerAlerts(currentRSI, currentMACD);
     }
 
     @Override

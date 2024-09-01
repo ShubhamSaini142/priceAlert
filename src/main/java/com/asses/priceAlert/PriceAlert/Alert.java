@@ -15,7 +15,7 @@ public class Alert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long userId;
-    private double value;
+    private double alertValue;
     private String direction; // "UP" or "DOWN"
     private String indicator; // "RSI" or "MACD"
     private String status; // "PENDING", "COMPLETED", "CANCELLED"
