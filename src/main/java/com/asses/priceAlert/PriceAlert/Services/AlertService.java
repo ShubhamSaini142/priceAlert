@@ -1,5 +1,7 @@
-package com.asses.priceAlert.PriceAlert;
+package com.asses.priceAlert.PriceAlert.Services;
 
+import com.asses.priceAlert.PriceAlert.Model.Alert;
+import com.asses.priceAlert.PriceAlert.Repository.AlertRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +10,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Service
-public class AlertProcessor {
+public class AlertService {
 
     @Autowired
     private AlertRepo alertRepository;
@@ -16,7 +18,7 @@ public class AlertProcessor {
     @Autowired
     NotificationService notificationService;
 
-    private static final Logger logger = Logger.getLogger(AlertProcessor.class.getName());
+    private static final Logger logger = Logger.getLogger(AlertService.class.getName());
 
 
     public void checkAndTriggerAlerts(double currentRSI, double currentMACD) {

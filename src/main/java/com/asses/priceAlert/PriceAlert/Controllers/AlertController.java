@@ -1,5 +1,7 @@
-package com.asses.priceAlert.PriceAlert;
+package com.asses.priceAlert.PriceAlert.Controllers;
 
+import com.asses.priceAlert.PriceAlert.Model.Alert;
+import com.asses.priceAlert.PriceAlert.Repository.AlertRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

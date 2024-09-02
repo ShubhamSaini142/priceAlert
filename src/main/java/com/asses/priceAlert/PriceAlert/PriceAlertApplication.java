@@ -1,5 +1,6 @@
 package com.asses.priceAlert.PriceAlert;
 
+import com.asses.priceAlert.PriceAlert.Services.WebSocketPriceListener;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +12,9 @@ import java.net.URISyntaxException;
 public class PriceAlertApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(PriceAlertApplication.class, args);
+
 	}
 	@Bean
 	public CommandLineRunner run(WebSocketPriceListener listener) {

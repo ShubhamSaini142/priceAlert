@@ -1,4 +1,4 @@
-package com.asses.priceAlert.PriceAlert;
+package com.asses.priceAlert.PriceAlert.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
