@@ -14,11 +14,10 @@ public class Alert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
     private double alertValue;
     private String direction; // "UP" or "DOWN"
     private String indicator; // "RSI" or "MACD"
-    private String status; // "PENDING", "COMPLETED", "CANCELLED"
+    private String status; // "PENDING", "COMPLETED"
     private LocalDateTime createdAt;
     private LocalDateTime triggeredAt;
 }

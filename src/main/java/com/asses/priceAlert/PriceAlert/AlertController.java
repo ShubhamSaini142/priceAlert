@@ -1,6 +1,7 @@
 package com.asses.priceAlert.PriceAlert;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -12,13 +13,19 @@ import java.util.Optional;
 public class AlertController {
 
     @Autowired
-    private alertRepo alertRepository;
+    private AlertRepo alertRepository;
 
     @PostMapping
-    public Alert createAlert(@RequestBody Alert alert) {
+    public ResponseEntity<?> createAlert(@RequestBody Alert alert) {
+        if (!"UP".equals(alert.getDirection()) && !"DOWN".equals(alert.getDirection())) {
+            return ResponseEntity.badRequest().body("Please use Correct Direction");
+        }
+        if (!"RSI".equals(alert.getIndicator()) && !"MACD".equals(alert.getIndicator())) {
+            return ResponseEntity.badRequest().body("Please Use Correct Indicator");
+        }
         alert.setStatus("PENDING");
         alert.setCreatedAt(LocalDateTime.now());
-        return alertRepository.save(alert);
+        return ResponseEntity.ok(alertRepository.save(alert));
     }
 
     @GetMapping("/{id}")

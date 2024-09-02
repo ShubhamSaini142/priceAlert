@@ -22,7 +22,7 @@ public class PriceAlertApplication {
 
 	@Bean
 	public WebSocketPriceListener webSocketPriceListener() throws URISyntaxException {
-		String wsUrl = "wss://stream.binance.com:9443/ws/btcusdt@trade";
+		String wsUrl ="wss://stream.binance.com:9443/ws/btcusdt@ticker";
 		return new WebSocketPriceListener(wsUrl);
 	}
 }

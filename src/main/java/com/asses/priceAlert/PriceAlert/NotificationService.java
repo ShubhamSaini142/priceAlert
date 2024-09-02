@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
     public class NotificationService {
 
         public static void notifyUser(Alert alert) {
-            System.out.println("Notification: Alert triggered for user " + alert.getUserId() +
-                    " - Indicator: " + alert.getIndicator() + " has crossed the value " + alert.getAlertValue());
+            System.out.println("Notification: Alert triggered for user " +
+                    " - Indicator: " + alert.getIndicator() + " has crossed the value " + alert.getAlertValue() + " Direction is " + alert.getDirection());
         }
     }
 
