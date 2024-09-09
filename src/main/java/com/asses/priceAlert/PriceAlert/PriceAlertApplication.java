@@ -1,5 +1,7 @@
 package com.asses.priceAlert.PriceAlert;
 
+import com.asses.priceAlert.PriceAlert.Model.Alert;
+import com.asses.priceAlert.PriceAlert.Repository.AlertRepo;
 import com.asses.priceAlert.PriceAlert.Services.WebSocketPriceListener;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,8 +26,12 @@ public class PriceAlertApplication {
 	}
 
 	@Bean
-	public WebSocketPriceListener webSocketPriceListener() throws URISyntaxException {
-		String wsUrl ="wss://stream.binance.com:9443/ws/btcusdt@ticker";
-		return new WebSocketPriceListener(wsUrl);
-	}
+		public WebSocketPriceListener webSocketPriceListener() throws URISyntaxException {
+
+
+
+
+			String wsUrl ="wss://stream.binance.com:9443/ws/btcusdt@ticker";
+			return new WebSocketPriceListener(wsUrl);
+		}
 }

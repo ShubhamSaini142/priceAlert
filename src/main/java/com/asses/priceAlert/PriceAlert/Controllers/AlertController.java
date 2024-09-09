@@ -27,6 +27,8 @@ public class AlertController {
         }
         alert.setStatus("PENDING");
         alert.setCreatedAt(LocalDateTime.now());
+
+
         return ResponseEntity.ok(alertRepository.save(alert));
     }
 

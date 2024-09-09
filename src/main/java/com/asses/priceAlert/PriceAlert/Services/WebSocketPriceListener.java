@@ -39,25 +39,33 @@ public class WebSocketPriceListener extends WebSocketClient {
 
         JsonObject jsonObject = JsonParser.parseString(message).getAsJsonObject();
         double price = jsonObject.get("x").getAsDouble();
-        System.out.println("Received message: " + price);
+
         closingPrices.add(price);
+        System.out.println("Received message: " + price + " Data added to list " + closingPrices.size());
 
-//        System.out.println("Current closingPrices list: " + closingPrices);
+if(closingPrices.size() > 100) {
+    RSICalculator rsiCalculator = new RSICalculator();
+    double currentRSI = rsiCalculator.calculateRSI(closingPrices);
+    System.out.println(
+            "rsi " + currentRSI
+    );
 
-        RSICalculator rsiCalculator = new RSICalculator();
-        double currentRSI = rsiCalculator.calculateRSI(closingPrices);
-        System.out.println(
-                "rsi " + currentRSI
-        );
+    MACDCalculator calculator = new MACDCalculator();
+    double currentMACD = calculator.calculateMACD(closingPrices);
 
-
-        MACDCalculator calculator = new MACDCalculator();
-        double currentMACD = calculator.calculateMACD(closingPrices);
-
-        System.out.println( "MACD " + currentMACD);
+    System.out.println("MACD " + currentMACD);
 
 
-        a.checkAndTriggerAlerts(currentRSI, currentMACD);
+
+    a.checkAndTriggerAlerts(currentRSI, currentMACD);
+
+}
+else {
+    System.out.println("Data is Filling Wait for few secs.....");
+}
+
+
+
     }
 
     @Override
